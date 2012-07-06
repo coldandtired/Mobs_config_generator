@@ -1,0 +1,150 @@
+﻿<navigation:Page x:Class="me.coldandtired.mcg.Views.Config_start_page" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Config_start_page Page">
+    <Grid x:Name="LayoutRoot">
+<Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Active mobs"
+                   Style="{StaticResource title_style}"/>
+        <TextBlock Text="This is the list of all veriants of mobs that can be used in the config.  Drag a mob from the bottom box to the top one to add, then select it to modify"
+                   Grid.Row="1"
+                   Style="{StaticResource subtitle_style}"/>                   
+        <!--TextBlock Text="Active mobs.  Drag a mob here to include it in the config.  Drag a mob from here to the bin to remove it."
+                   Margin="10"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   Opacity="0.2"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"/-->
+        <toolkit:ListBoxDragDropTarget DragOver="adding_mob"
+                                       Drop="add_mob"
+                                       Grid.Row="2"
+                                       AllowDrop="True"
+                                       AllowedSourceEffects="Move"
+                                       HorizontalContentAlignment="Stretch">
+            <ListBox ItemsSource="{Binding mob_pool}"
+                     Margin="5"
+                     Height="210"
+                     Background="Transparent"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.Resources>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Grid Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Stretch" 
+                                Margin="{TemplateBinding Padding}" 
+                                x:Name="contentPresenter" Content="{TemplateBinding Content}" 
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.Resources>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Button Click="show_mob_page"
+                                Width="72"
+                                Margin="5">
+                            <Button.Template>
+                                <ControlTemplate>
+                                    <Border BorderBrush="Green"
+                                    BorderThickness="2"
+                                    CornerRadius="2">
+                                        <StackPanel>
+                                            <Image Width="64"
+                                                   Stretch="Fill"
+                                                   ToolTipService.ToolTip="{Binding {Binding}, Converter={StaticResource mob_tooltip_converter}}"
+                                                   Height="64">
+                                                <Image.Source>
+                                                    <Binding Path="name" 
+                                                 StringFormat="/Assets/mob_images/{0}.png"/>
+                                                </Image.Source>
+                                            </Image>
+                                            <TextBlock Text="{Binding display_name}"
+                                       HorizontalAlignment="Center"
+                                       FontWeight="Bold"
+                                       FontSize="11"/>
+                                        </StackPanel>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <toolkit:WrapPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </toolkit:ListBoxDragDropTarget>
+
+        <toolkit:ListBoxDragDropTarget Grid.Row="3"
+                                       AllowedSourceEffects="Copy"
+                                       HorizontalContentAlignment="Stretch">
+            <ListBox Margin="5"
+                     Width="600"
+                     Height="210"
+                     ItemsSource="{Binding active_mobs}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.Resources>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Grid Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Stretch" 
+                                Margin="{TemplateBinding Padding}" 
+                                x:Name="contentPresenter" Content="{TemplateBinding Content}" 
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.Resources>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <toolkit:WrapPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Green"
+                                Cursor="Hand"
+                                    BorderThickness="2"
+                                    CornerRadius="2"
+                                    Margin="3">
+                            <Image Width="24"
+                                ToolTipService.ToolTip="{Binding display_name}"
+                                       Height="24">
+                                <Image.Source>
+                                    <Binding Path="name" 
+                                                 StringFormat="/Assets/mob_images/{0}.png"/>
+                                </Image.Source>
+                            </Image>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </toolkit:ListBoxDragDropTarget>
+    </Grid>
+</navigation:Page>

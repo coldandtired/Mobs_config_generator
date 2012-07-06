@@ -1,0 +1,95 @@
+﻿<navigation:Page x:Class="me.coldandtired.mcg.Views.Cow_page" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Cow">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Resources>
+            <Style TargetType="ListBoxItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListBoxItem">
+                            <Grid Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Left" 
+                                Margin="{TemplateBinding Padding}" 
+                                x:Name="contentPresenter" Content="{TemplateBinding Content}" 
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/mob_images/cow.png"
+                        Stretch="Fill"
+                        Opacity="0.05"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Width="400"
+                Height="200"
+                BorderBrush="Black"
+                BorderThickness="2">
+            <toolkit:ListBoxDragDropTarget AllowDrop="True"  DragOver="ListBoxDragDropTarget_DragOver"
+                                       AllowedSourceEffects="Move">
+
+                <ListBox ItemsSource="{Binding condition_groups}"
+                                       Width="400"
+                                       Height="200"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Image Source="/Assets/images/conditions.png"
+                       Height="64"
+                       Width="64"/>
+                                <TextBlock Text="{Binding test}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <toolkit:WrapPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </toolkit:ListBoxDragDropTarget>
+        </Border>
+
+        <toolkit:PanelDragDropTarget Grid.Row="1" AllowedSourceEffects="Copy">
+            <StackPanel>
+                <Image Source="/Assets/images/conditions.png"
+                       Height="64"
+                       Width="64"/>
+            </StackPanel>
+        </toolkit:PanelDragDropTarget>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <toolkit:PanelDragDropTarget AllowDrop="True" Drop="add_base_outcome">
+                <StackPanel>
+                    <Image Source="/Assets/images/conditions.png"
+                       Height="64"
+                       Width="64"/>
+                </StackPanel>
+            </toolkit:PanelDragDropTarget>
+
+            <toolkit:PanelDragDropTarget AllowDrop="True" Drop="PanelDragDropTarget_DragOver" DragOver="PanelDragDropTarget_DragOver_1">
+                <Canvas>
+                    <Image Source="/Assets/images/bin.png"
+                       Height="64"
+                       Width="64"/>
+                </Canvas>
+            </toolkit:PanelDragDropTarget>
+        </StackPanel>
+    </Grid>
+</navigation:Page>

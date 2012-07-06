@@ -1,0 +1,152 @@
+﻿<navigation:Page x:Class="me.coldandtired.mcg.Home" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:toolkit="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+    Title="Home"
+    Style="{StaticResource PageStyle}">
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Text="Global lists"
+                   Margin="10"
+                   FontWeight="Bold"
+                   FontSize="20"
+                   Opacity="0.2"
+                   VerticalAlignment="Center"/>
+        
+        <Border Margin="5"
+                BorderBrush="Green"
+                BorderThickness="1">
+            <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+                <HyperlinkButton HorizontalContentAlignment="Center"
+                                 Margin="5"
+                                NavigateUri="/Condition_group_pool">
+                    <HyperlinkButton.Template>
+                        <ControlTemplate>
+                            <Image Source="/Assets/images/conditions.png"
+                                   Height="64"
+                                   Width="64"/>
+                        </ControlTemplate>
+                    </HyperlinkButton.Template>
+                </HyperlinkButton>
+                <HyperlinkButton HorizontalContentAlignment="Center"
+                                NavigateUri="/Drops_pool"
+                                 Margin="5">
+                    <HyperlinkButton.Template>
+                        <ControlTemplate>
+                            <Image Source="/Assets/images/drops.png"
+                                   Height="64"
+                                   Width="64"/>
+                        </ControlTemplate>
+                    </HyperlinkButton.Template>
+                </HyperlinkButton>
+                <HyperlinkButton HorizontalContentAlignment="Center"
+                                NavigateUri="/Enchantment_pool"
+                                 Margin="5">
+                    <HyperlinkButton.Template>
+                        <ControlTemplate>
+                            <Image Source="/Assets/images/enchantments.png"
+                                   Height="64"
+                                   Width="64"/>
+                        </ControlTemplate>
+                    </HyperlinkButton.Template>
+                </HyperlinkButton>
+
+                <HyperlinkButton HorizontalContentAlignment="Center"
+                                NavigateUri="/Potion_effect_pool"
+                                 Margin="5">
+                    <HyperlinkButton.Template>
+                        <ControlTemplate>
+                            <Image Source="/Assets/images/potions.png"
+                                   Height="64"
+                                   Width="64"/>
+                        </ControlTemplate>
+                    </HyperlinkButton.Template>
+                </HyperlinkButton>
+                <HyperlinkButton HorizontalContentAlignment="Center"
+                                NavigateUri="/Mob_pool"
+                                 Margin="5">
+                    <HyperlinkButton.Template>
+                        <ControlTemplate>
+                            <Image Source="/Assets/mob_images/skeleton.png"
+                                   Height="64"
+                                   Width="64"/>
+                        </ControlTemplate>
+                    </HyperlinkButton.Template>
+                </HyperlinkButton>
+            </StackPanel>
+        </Border>
+
+        <HyperlinkButton HorizontalContentAlignment="Center"
+                         Grid.Row="1"
+                         NavigateUri="/Config_start_page"
+                         Margin="5">
+            <HyperlinkButton.Template>
+                <ControlTemplate>
+                    <Image Source="/Assets/mob_images/skeleton.png"
+                                   Height="64"
+                                   Width="64"/>
+                </ControlTemplate>
+            </HyperlinkButton.Template>
+        </HyperlinkButton>
+
+        <StackPanel Grid.Row="3"
+                    Margin="5"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Width" Value="36"/>
+                    <Setter Property="Height" Value="36"/>
+                    <Setter Property="Margin" Value="5, 0"/>
+                </Style>
+                <Style TargetType="HyperlinkButton">
+                    <Setter Property="Width" Value="36"/>
+                    <Setter Property="Height" Value="36"/>
+                    <Setter Property="Margin" Value="5, 0"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Click="save">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/Assets/images/save.png"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button Click="load">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="/Assets/images/load.png"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <HyperlinkButton HorizontalContentAlignment="Center"
+                                NavigateUri="/About">
+                <HyperlinkButton.Template>
+                    <ControlTemplate>
+                        <Image Source="/Assets/images/about.png"/>
+                    </ControlTemplate>
+                </HyperlinkButton.Template>
+            </HyperlinkButton>
+            <HyperlinkButton HorizontalContentAlignment="Center"
+                                NavigateUri="http://coldandtired.binhoster.com/wiki/index.php/Config_Generator" 
+                                TargetName="_blank">
+                <HyperlinkButton.Template>
+                    <ControlTemplate>
+                        <Image Source="/Assets/images/help.png"/>
+                    </ControlTemplate>
+                </HyperlinkButton.Template>
+            </HyperlinkButton>
+        </StackPanel>        
+    </Grid>
+</navigation:Page>
